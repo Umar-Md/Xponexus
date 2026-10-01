@@ -1,0 +1,15 @@
+import { Router } from "express";
+import { requireAdmin } from "../middleware/auth.js";
+import { createProject,updateProject,deleteProject,listAdminProjects,updateProjectPdf } from "../controllers/project.controller.js";
+import { createDrawing,updateDrawing,deleteDrawing } from "../controllers/drawing.controller.js";
+const router=Router();
+router.use(requireAdmin);
+router.get("/projects",listAdminProjects);
+router.post("/projects",createProject);
+router.put("/projects/:id",updateProject);
+router.patch("/projects/:id/pdf",updateProjectPdf);
+router.delete("/projects/:id",deleteProject);
+router.post("/projects/:projectId/drawings",createDrawing);
+router.put("/drawings/:id",updateDrawing);
+router.delete("/drawings/:id",deleteDrawing);
+export default router;

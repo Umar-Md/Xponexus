@@ -1,0 +1,5 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+html,body{margin:0;min-height:100%;background:#0b0b0b}body{font-family:Arial,Helvetica,sans-serif}
+.xpo-shell{width:min(1180px,calc(100% - 40px));margin:auto}.xpo-card{@apply rounded-2xl border border-white/10 bg-white/[0.035]}

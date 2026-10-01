@@ -1,0 +1,11 @@
+import { Router } from "express";
+import multer from "multer";
+import fs from "fs";
+import path from "path";
+import { requireAdmin } from "../middleware/auth.js";
+const router=Router();
+for(const dir of ["uploads/pdfs","uploads/images"]) fs.mkdirSync(dir,{recursive:true});
+const storage=multer.diskStorage({destination:(req,file,cb)=>cb(null,file.mimetype==="application/pdf"?"uploads/pdfs":"uploads/images"),filename:(req,file,cb)=>cb(null,`${Date.now()}-${file.originalname.replace(/[^a-zA-Z0-9._-]/g,"_")}`)});
+const upload=multer({storage,limits:{fileSize:50*1024*1024},fileFilter:(req,file,cb)=>cb(null,file.mimetype==="application/pdf"||file.mimetype.startsWith("image/"))});
+router.post("/",requireAdmin,upload.single("file"),(req,res)=>{if(!req.file)return res.status(400).json({message:"PDF or image required"});const origin=process.env.PUBLIC_API_ORIGIN||`${req.protocol}://${req.get("host")}`;res.json({url:`${origin}/${req.file.path.replaceAll("\\","/")}`})});
+export default router;
