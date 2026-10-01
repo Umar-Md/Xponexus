@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # XPONEXUS — Next.js + Tailwind + Express + PostgreSQL
 
 ## What is included
@@ -36,3 +37,6 @@ Admin login: `http://localhost:3000/admin/login`.
 
 ## Production
 Set `CLIENT_URL`, `PUBLIC_API_ORIGIN`, `NEXT_PUBLIC_API_URL`, and `API_ORIGIN` to the deployed origins. Put persistent/object storage behind the upload route for multi-instance/cloud production.
+=======
+# Xponexus
+>>>>>>> b384ba5df3ba8535804f8ef28f93d8865569e1b9
